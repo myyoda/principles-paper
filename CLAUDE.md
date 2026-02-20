@@ -42,9 +42,17 @@ Target: Nature Scientific Data Article (not Data Descriptor).
 Scientific Data Articles allow flexible structure (IMRaD recommended, not mandated).
 The current Results subsection pattern remains appropriate:
 1. **Motivation**: Why this property matters. What goes wrong without it.
-2. **Definition**: Reference the formal requirements in Table 1. Brief prose restating the core idea.
+2. **Definition**: Reference the formal requirements in Table 1 using an imperative style using RFC 2119 specification. Brief prose restating the core idea.
 3. **Spectrum** (minimum → ideal): Practical floor → aspirational ceiling. Foreshadow later properties rather than detail them.
 4. **Cross-references**: How this property interacts with others (brief).
+
+
+## Framing of Distinct Tables
+
+- Table 1: General definitions of each principle. This is the shorthand reference prior to delving into deeper details in each section.
+- Table 2: Descriptions of normative properties about a workflow that satisfies each principle. This offers a re-framed perspective on how to evaluate a workflow against the principle, rather than just defining the principle itself. This follows the style of the primary FAIR table.
+- Table/Checklist 3: Collection of all imperative requirements from the individual sections, ordered by importance. This provides firm suggestions for users to apply to their own workflows.
+
 
 ## Writing Conventions
 
