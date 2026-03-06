@@ -4,3 +4,11 @@ FLAVORS = PDF
 # https://gitlab.inria.fr/latex-utils/latex-make
 # sudo apt install latex-make   on Debian systems
 include /usr/include/LaTeX.mk
+
+main.pdf: references.bib
+
+# Zotero group library — public, no API key needed
+ZOTERO_GROUP_ID = 6197458
+
+references.bib:
+	curl -sf "https://api.zotero.org/groups/$(ZOTERO_GROUP_ID)/items?format=bibtex&limit=1000" -o $@
