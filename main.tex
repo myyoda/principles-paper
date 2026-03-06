@@ -5,7 +5,7 @@
 
 % Scientific Data: max 110 chars, no colons or parentheses, capitalize only first word + proper nouns
 \title{STAMPED properties for reproducible research objects}
-\author{Austin Macdonald, Cody C. Baker, Yaroslav Halchenko, Isaac To}
+\author{Austin Macdonald, Cody C. Baker, Yaroslav O. Halchenko, Isaac To}
 \date{March 2025}
 
 \begin{document}
@@ -33,8 +33,13 @@ Enhanced rigor, reproducibility, re-usability, efficiency, and translation acros
 Many researchers already employ practices toward these goals, but lack a common framework to evaluate or communicate their approach.
 Here we identify and codify these practices as the STAMPED properties (Self-contained, Tracked, Actionable, Modular, Portable, Ephemeral, and Distributable), originating from the YODA Principles, % TODO: cite YODA
 which characterize a well-formed research object.
-STAMPED takes a pragmatic approach toward these goals in which each property is a spectrum, from practical minimums---often what researchers are already doing---to aspirational ideals.
-STAMPED complements formal computational workflow guidelines (e.g., FAIR4RS, RO-Crate) and facilitates the transition toward comprehensive workflow automation.
+STAMPED takes a pragmatic approach toward these goals in which each property has a spectrum, from practical minimums---often what researchers are already doing---to aspirational ideals.
+This spectrum means STAMPED applies across the full range of research complexity.
+A researcher who uses version control for an analysis script and documents how to run it is already practicing Self-containment, Tracking, and Actionability at their practical minimum.
+As complexity grows---multi-institutional collaborations with federated datasets, heterogeneous workflows spanning platforms, long-term reproducibility requirements---the same properties scale upward toward their ideal ends, guiding researchers toward more rigorous practices without requiring wholesale adoption of new tools.
+STAMPED is not a compliance threshold to clear but an incremental framework: any research object can be evaluated against it, and any improvement along any dimension is meaningful.
+To assist with such incremental improvement, for each STAMPED property we provide compliance checklists with different strengths of the requirements.
+As such, STAMPED complements formal computational workflow guidelines (e.g., FAIR4RS, RO-Crate) and facilitates the transition toward comprehensive workflow automation.
 
 % TODO: work term definitions (workflow, module, component, provenance) into Introduction — see proposals/stamped-acronym.md
 % Recycled prose:
@@ -446,25 +451,6 @@ This comes at a cost: a steeper learning curve.
 Git LFS offers a simpler alternative that is transparent to users and has native GitHub/GitLab support with broad adoption.
 The trade-off: Git LFS is centralized (requires an LFS server), lacks offline capability, and has less flexible remote configurations.
 Lightweight STAMPED implementations using Git LFS are feasible for easier onboarding, sacrificing federation flexibility.
-
-\subsubsection{When STAMPED Is vs Is Not Appropriate}
-
-\textbf{STAMPED excels when}:
-\begin{itemize}
-    \item Multi-institutional collaboration requires federated datasets
-    \item Long-term reproducibility spans decades or requires offline archives
-    \item Heterogeneous workflows are not tied to a specific platform
-    \item Data sovereignty requirements preclude mandatory cloud upload
-    \item Complex dependency graphs involve subdatasets from diverse sources
-\end{itemize}
-
-\textbf{STAMPED may be more than needed for}:
-\begin{itemize}
-    \item Single-script analyses where version control alone suffices
-    \item Ephemeral exploratory work such as Jupyter notebooks
-    \item Cloud-native ML production where Pachyderm or a platform may be a better fit
-    \item Small teams with simple workflows where DVC or Git LFS may suffice
-\end{itemize}
 
 \subsection{Examples and Case Studies}
 % TODO: point to living documentation, minimal examples/counter-examples
