@@ -187,28 +187,14 @@ Toward the ideal end, the full research object can be reassembled from its speci
     \item \textbf{P.3}: Environment definitions MUST be version controlled.
 \end{itemize}
 
-A research object that is self-contained, tracked, and modular may still fail to reproduce if it depends on undocumented host environment state---hardcoded paths, implicitly available tools, or specific OS configurations.
-Portability requires that procedures can be executed on different host environments, given documented system requirements.
+A research object that is self-contained, tracked, and modular may still fail to run on a different machine if it is silently affected by inherited host state---a specific Python installation, a system library, a hardcoded path, or an assumed OS configuration.
+This coupling is often invisible on the original system and only surfaces when someone else attempts to reproduce the work.
+Portability requires making all host dependencies explicit, so that the research object can be adapted to a new environment.
 
-Research reproducibility fundamentally depends not only on preserving code and data, but also on capturing the complete computational environment—the operating system, libraries, dependencies, and tool versions—that produced the results.
-Environmental drift, where software dependencies evolve or disappear over time, is a primary cause of computational irreproducibility. Even with identical code and data, differences in library versions, compiler settings, or system configurations can produce divergent results or outright failures.
-
-Computational environments should be explicitly defined (not implicitly assumed), machine-reproducible, version controlled alongside code and data, and self-contained within the project boundary.
-
-Two primary approaches exist for environment portability:
-\begin{enumerate}
-  \item \textbf{Container-based}: Docker, Singularity/Apptainer provide OS-level isolation.
-  \item \textbf{Package-based}: Nix, Guix provide declarative, reproducible package management.
-\end{enumerate}
-
-STAMPED is environment-mechanism-agnostic; what matters is that
-environments are explicitly specified, versioned, and available within the project.
-
-% TODO: containers need more coverage here — containerization is a key portability mechanism that E and D both depend on
-% TODO: spectrum — minimum (documented system requirements, no hardcoded paths) vs ideal (machine-reproducible environment specs, containers)
-% TODO: the code/ vs code/local/ pattern for non-portable config — see #34
-% TODO: randomness/seeds as a portability concern — see #34
-% TODO: provenance format targets (W3C PROV, BEP028, RO-Crate, BioComputeObject) — where do these go? Discussion?
+Some degree of coupling to the host is unavoidable---paths, resource limits, platform-specific flags.
+The spectrum of Portability begins with isolating this host-specific configuration from the rest of the research object, so that adapting to a new environment, however involved that may be, requires only changing configuration.
+Beyond this, several complementary approaches reduce host coupling: virtual machines provide full system-level isolation; container-based tools (Docker, Singularity/Apptainer) bundle OS-level environments; and declarative package managers (Nix, Guix) specify environments that can be reconstructed from a definition.
+Toward the ideal end, the computational environment is fully specified and version controlled within the research object, enabling it to be instantiated on any compatible system.
 
 
 
