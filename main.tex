@@ -262,18 +262,19 @@ Ephemeral computation does not validate everything---for instance, an ephemeral 
     \item \textbf{D.2}: Environment specifications SHOULD support reproducible builds.
 \end{itemize}
 
-% TODO: Actionability cross-cut — D is more actionable when there is tooling that can distribute a frozen state (containers, PyInstaller, npm ci), not just instructions to "pin your dependencies"
-Self-containment (S) establishes that everything needed is within the research object's boundary, possibly by reference.
-Distributability promises that those references actually deliver---that the research object and its components can be shared, retrieved, and used by others in a state consistent with reuse.
+A research object that is self-contained on the author's machine but cannot be obtained by others in the same state is effectively unreproducible beyond its origin.
+Self-containment (S) establishes that everything needed is within the boundary and Tracking (T) records the state of each component.
+Distributability ensures that others can obtain the research object in that same state.
 
 The distinction mirrors the concept of a software distribution: a curated, versioned bundle in which all components are resolved to specific versions and packaged for consumption.
 Simply sharing a research object---uploading scripts to a repository with loose dependencies, or posting files on a website with no version guarantees---does not constitute distribution in this sense.
-A distributable research object is packaged so that it can be retrieved in the same state as intended
+A distributable research object is packaged so that it can be retrieved in the same state as intended.
 
 Distributability also has a circular relationship with the other STAMPED properties: someone else's distribution effort often serves as the starting point for a new research object's self-containment.
 Researchers routinely begin by downloading containers, fetching published datasets, and installing released software---modularly composing the distributions of others to assemble their own self-contained research objects.
 
-The spectrum of distributability ranges from publicly accessible components with retrieval instructions, through persistent hosting on archival infrastructure (Zenodo, PyPI, conda-forge, DANDI) with frozen versions and content-addressed identifiers---analogous to moving from a development checkout (\texttt{pip install -e .}) to a pinned release (\texttt{pip freeze})---to an ideal in which all external dependencies are mirrored or the entire research object is packaged as a self-contained archive (e.g., a built container or a zipped RO-Crate).
+The spectrum of Distributability begins where FAIR leaves off: publicly accessible components with documented retrieval instructions.
+Toward the ideal end, several complementary strategies reduce the risk that external changes will break a research object's reproducibility: bundling dependencies into containers or archives reduces the surface area of components that can independently change or disappear; hosting on archival infrastructure (Zenodo, DANDI, Software Heritage) with content-addressed identifiers allows recipients to verify integrity regardless of source; and mirroring across multiple platforms protects against the failure of any single registry.
 
 \begin{table}[ht]
 \centering
