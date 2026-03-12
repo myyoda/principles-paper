@@ -37,12 +37,6 @@ As complexity grows---multi-institutional collaborations, heterogeneous workflow
 This spectrum means STAMPED applies across the full range of research complexity.
 STAMPED provides a vocabulary and spectrum-based framework for describing, evaluating, and incrementally improving the operational properties of computational research objects toward enhanced rigor, reproducibility, reusability, and efficiency.
 
-% TODO: work term definitions (workflow, module, component, provenance) into Introduction — see proposals/stamped-acronym.md
-% Recycled prose:
-% A \textbf{workflow} is a sequence of computational steps that transform data within the research object using code components to produce output data.
-% A research object is composed of \textbf{modules}---separately distributable collections of components (e.g., an input dataset, a container image, an analysis pipeline).
-% A \textbf{component} is a trackable element that is part of a module (e.g., a data file, a script, a configuration file, a metadata file); a module contains components, but not every component is itself a module.
-% \textbf{Provenance} is the recorded history of how components were produced or modified, including what actions were performed, what inputs were used, and the versions of everything involved.
 
 
 
@@ -173,33 +167,15 @@ The principle is tool-agnostic: any system that moves a property from documented
     \item \textbf{M.2}: Components MAY be included directly or linked as subdatasets.
 \end{itemize}
 
-Monolithic structures present significant barriers to effective development, maintenance, and reuse.
-Managing such research objects as single, large units complicates incremental updates, obscures dependencies, remixing of components, and can be notably time-consuming.
-So rather than managing the research object as one indivisible whole, STAMPED promotes a compositional approach, structuring projects as assemblies of independently versioned and well-defined components.
-Defining a module as a separately distributable collection of components for our research object, \textbf{Modularity} is achieved when all modules of the research are independent and composable.
-Individual parts—such as input and reference datasets, processing scripts, and computational environments—can be updated or replaced independently, thus minimizing disruption and maximizing reusability.
-
-The layout of these components plays a crucial role in enabling effective modularity:
-
-\begin{itemize}
-  \item \textbf{code/}: containing analysis scripts and tests.
-  \item \textbf{inputs/}: encapsulating raw or intermediate datasets.
-  \item \textbf{envs/}: defining computational environments (e.g., Singularity images).
-  \item \textbf{docs/}: for project documentation.
-  \item \textbf{results/}: explicitly identified outputs (e.g., figures, tables, derived datasets).
-\end{itemize}
-
-The intention of such organization clarifies for researchers how to compose and recombine modules flexibly to produce varied outcomes.
-
-The spectrum of modularity ranges from:
-At \textbf{minimum}, organize components into logical subdirectories---separate code from data, distinguish inputs from results, and document structure in a README.
-At a \textbf{middle} level, formalize module boundaries using version control repository boundaries, with major components as separate repositories referencing each other via submodules or documented URLs with version tags.
-At the \textbf{ideal} level, implement fully actionable composition with all dependencies as versioned submodules with automated module installation, allowing the entire workflow to be reassembled from a self-contained specification.
-
-Modularity ought to rely heavily on Tracking (module boundaries require independent versioning) and
-Self-containment (all independent modules required by the workflow).
-It enhances Actionability by increasing the system reliability.
-Portability and Distributability are also easier to achieve since modules can themselves be ported and distributed separately from the integration in the whole.
+Separation of concerns is a foundational engineering practice: organizing a system so that each piece has a clear, distinct role.
+Without clear boundaries between the conceptual components of a research object, it is difficult to manage them independently.
+We define a \textbf{module} as a separately distributable unit of a research object---such as a dataset, a collection of analysis scripts, or a computational environment definition.
+In practice, module boundaries often align with repository boundaries, but a module may also be a published container, a registered dataset, or any independently versioned unit.
+Modularity applies this principle to research objects, structuring them as assemblies of modules whose boundaries are explicit.
+At a minimum, a research object might separate analysis code, input datasets, computational environments, and results into distinct directories, making it navigable and maintainable.
+Beyond this, independent versioning of modules enables reuse: a dataset or environment can be updated to a newer version, or swapped for an alternative, without disrupting the rest of the research object.
+This is possible through manual management but becomes practical when handled by tooling that automates module installation, versioning, and composition.
+Toward the ideal end, the full research object can be reassembled from its specification through automated, recursive installation of its modules.
 
 
 
