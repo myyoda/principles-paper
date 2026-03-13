@@ -103,16 +103,16 @@ Tracking, Modularity, Portability, and Distributability each address a different
 
 Research data and code change constantly during a project, and each change compounds the difficulty of reconstructing any previous state: which version of a dataset was used for a particular analysis, what parameters were set, what code produced a given figure.
 Tracking addresses two concerns: the identity of each component---which exact state it was in---and \textbf{provenance}, the recorded history of what actions produced or modified it.
-These are often managed separately---versions in one system, provenance in a lab notebook or nowhere at all---and this fragmentation makes prior work hard to verify or reproduce.
+These are often managed separately---versions in one system, provenance in a lab notebook or nowhere at all---and this fragmentation makes prior work hard to validate.
 
 The spectrum of Tracking begins with content-addressed version control.
-Rather than relying on semantic version labels, content-addressed systems identify each state by a cryptographic checksum of its contents.
+Rather than relying on semantic version labels, content-addressed systems identify each state by a checksum of its contents.
 This distinction matters: two datasets labeled ``version 1.0'' by different labs are ambiguous; two datasets with identical content hashes are provably identical.
 Version control commits also capture basic provenance---who made the change, when, and a description of why---unifying identity and provenance in a single system.
 This also provides a safety net: any change can be reverted and any prior state restored, making it safe to modify and experiment.
 For tracking to be effective, all components of the research object must be under version control---code, data, environment definitions, and configuration.
 
-Traditional version control is designed for source code, but research objects often include large binary datasets, container images, and other assets that do not fit this model.
+Traditional version control is designed for code and other text files, but research objects often include large binary datasets, container images, and other assets that do not fit this model.
 Compatible tools such as git-annex, DataLad, or DVC extend content-addressed tracking to these components, ensuring that all parts of the research object are managed under the same system.
 
 Toward the ideal end, provenance is captured programmatically by tooling rather than by manual annotation, producing richer records than a human would typically write: each computational step records what command was executed and what inputs it consumed.
@@ -156,11 +156,11 @@ The principle is tool-agnostic: any system that moves a property from documented
 \end{itemize}
 
 Separation of concerns is a foundational engineering practice: organizing a system so that each piece has a clear, distinct role.
-Without clear boundaries between the conceptual components of a research object, it is difficult to manage them independently.
+With clear boundaries between the conceptual components of a research object, it becomes more navigable and maintainable.
 We define a \textbf{module} as a separately distributable unit of a research object---such as a dataset, a collection of analysis scripts, or a computational environment definition.
 In practice, module boundaries often align with repository boundaries, but a module may also be a published container, a registered dataset, or any independently versioned unit.
 Modularity applies this principle to research objects, structuring them as assemblies of modules whose boundaries are explicit.
-At a minimum, a research object might separate analysis code, input datasets, computational environments, and results into distinct directories, making it navigable and maintainable.
+At a minimum, a research object should separate analysis code, input datasets, computational environments, configuration settings, and results into distinct directories.
 Beyond this, independent versioning of modules enables reuse: a dataset or environment can be updated to a newer version, or swapped for an alternative, without disrupting the rest of the research object.
 This is possible through manual management but becomes practical when handled by tooling that automates module installation, versioning, and composition.
 Toward the ideal end, the full research object can be reassembled from its specification through automated, recursive installation of its modules.
@@ -179,7 +179,7 @@ A research object that is self-contained, tracked, and modular may still fail to
 This coupling is often invisible on the original system and only surfaces when someone else attempts to reproduce the work.
 Portability requires making all host dependencies explicit, so that the research object can be adapted to a new environment.
 
-Some degree of coupling to the host is unavoidable---paths, resource limits, platform-specific flags.
+Some degree of coupling to the host is unavoidable---path naming restrictions, resource limits, platform-specific flags.
 The spectrum of Portability begins with isolating this host-specific configuration from the rest of the research object, so that adapting to a new environment, however involved that may be, requires only changing configuration.
 Beyond this, several complementary approaches reduce host coupling: virtual machines provide full system-level isolation; container-based tools (Docker, Singularity/Apptainer) bundle OS-level environments; and declarative package managers (Nix, Guix) specify environments that can be reconstructed from a definition.
 Toward the ideal end, the computational environment is fully specified and version controlled within the research object, enabling it to be instantiated on any compatible system.
@@ -194,7 +194,7 @@ Toward the ideal end, the computational environment is fully specified and versi
 
 A research object may satisfy Self-containment, Tracking, and Portability while its computational environment has only ever been assembled once, incrementally, on the original researcher's machine.
 During development, researchers routinely modify their environment---installing packages, adjusting configurations, setting variables---and each change is individually small but collectively difficult to document.
-The result is environment drift: an environment that works but may not be reconstructable from its specification alone, where undocumented steps can go unnoticed when institutional knowledge silently fills the gaps.
+The result is environment drift: an environment that works but may not be reconstructable from its specification alone, where undocumented steps can go unnoticed when internalized knowledge silently fills the gaps.
 Ephemerality eliminates this problem by construction: a disposable environment built from tracked specifications cannot carry undocumented state, so any successful execution exercises Self-containment, Actionability, and specification completeness.
 
 The spectrum of Ephemerality ranges from manually setting up a fresh environment from the project's specification---sufficient to catch environment drift---to fully automated disposable environments created and destroyed per execution.
