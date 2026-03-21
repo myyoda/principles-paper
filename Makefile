@@ -17,6 +17,16 @@ default: pdf
 	  false; \
 	fi
 
+# Mermaid diagrams — render .mmd to .svg via mermaid-cli
+MMD_SRCS := $(wildcard figures/*.mmd)
+MMD_SVGS := $(MMD_SRCS:.mmd=.svg)
+
+.PHONY: diagrams
+diagrams: $(MMD_SVGS)
+
+figures/%.svg: figures/%.mmd
+	npx @mermaid-js/mermaid-cli -i $< -o $@
+
 # Zotero group library — public, no API key needed
 ZOTERO_GROUP_ID = 6197458
 
