@@ -37,7 +37,8 @@ Even when gathered in one place, research objects are often tightly coupled to s
 
 The FAIR principles\cite{wilkinson_fair_2016} and FAIR4RS guidelines\cite{barker_introducing_2022} provide structured guidance for making digital objects findable, accessible, interoperable, and reusable.
 The Workflow Community Initiative (WCI-FW)\cite{wilkinson_applying_2025} mapped these principles onto computational workflows but explicitly chose not to define new ones, instead treating workflows as hybrid data/software objects.
-FAIR addresses how digital objects should be described so they can be found, accessed, and reused; STAMPED addresses a complementary question: how a research object should be organized and managed so it can actually be re-executed, extended, and redistributed.
+FAIR addresses how digital objects should be described so they can be found, accessed, and reused.
+STAMPED addresses a complementary question: how a research object should be organized and managed so it can actually be re-executed, extended, and redistributed.
 Both frameworks cover overlapping concerns---for example, persistent identifiers serve both Findability and Tracking---but accent different aspects: FAIR emphasizes discovery and interoperability across repositories, while STAMPED emphasizes improving the operational maturity of scientific workflows in day-to-day research practice.
 
 Many researchers already employ practices that address these operational properties---version control, containerized environments, structured project directories, documented analysis steps---but lack a shared vocabulary to name them, evaluate how thoroughly they are applied, and communicate that evaluation to collaborators and reviewers.
@@ -479,11 +480,11 @@ This architectural shift influenced major neuroimaging tools:
 
 These adoptions demonstrate that STAMPED properties solve practical organizational challenges across scales, from individual studies to community-wide infrastructure.
 
-\subsection{Convergent evolution of empirical scientific practice}
+\subsection{Convergent evolution of data-driven scientific practices}
 
 The challenges that motivate STAMPED are not unique to any single domain.
 Over three decades, communities spanning geophysics, statistics, genomics, neuroimaging, and machine learning independently converged on strikingly similar organizational responses to the same recurring problems: fragmented provenance, irreproducible computations, and ad-hoc project layouts.
-What follows is not a comprehensive review but a tracing of that convergence, organized chronologically, to show that the properties STAMPED formalizes reflect durable responses to recurrent challenges rather than arbitrary design choices.
+What follows is not a comprehensive review but a tracing of that convergence, organized chronologically, to show that the properties STAMPED formalizes reflect durable responses to recurring challenges.
 
 The earliest calls for reproducibility-as-organization appeared in the 1990s.
 Claerbout and Karrenbach\cite{claerbout_electronic_1992} demonstrated that coupling electronic documents with Makefiles could make geophysical analyses self-contained, tracked, and re-executable---anticipating Self-containment~(S), Tracking~(T), and Actionability~(A).
@@ -496,7 +497,7 @@ Stodden\cite{stodden_scientific_2010} articulated legal and social dimensions of
 Sandve et~al.\cite{sandve_ten_2013} distilled ten rules for reproducible computation---track versions, record workflows, archive environments---spanning Tracking~(T), Actionability~(A), and Self-containment~(S).
 The FAIR principles\cite{wilkinson_fair_2016} established findability, accessibility, interoperability, and reusability as community norms for digital objects, later extended to research software by FAIR4RS\cite{barker_introducing_2022} and to workflows by the Workflow Community Initiative\cite{wilkinson_applying_2025}.
 Wilson et~al.\cite{wilson_good_2017} codified ``Good Enough Practices'' that operationalized many of these ideals for working scientists---Actionability~(A), Tracking~(T), and Self-containment~(S).
-The YODA principles\cite{hanke_yoda_2018} combined these insights into organizational rules from which STAMPED directly descends.
+The YODA principles\cite{hanke_yoda_2018} combined these insights into organizational practices from which STAMPED directly descends.
 Notably, the WCI-FW framework\cite{wilkinson_applying_2025} extended FAIR to computational workflows but explicitly declined to define new principles, leaving the operational gap---how a research object should be structured and managed---that STAMPED fills.
 
 Independent of these normative efforts, a parallel ``Git for data'' convergence occurred in tooling.
@@ -505,13 +506,13 @@ Despite differing architectures---some cloud-native, some local-first, some cent
 This convergence is evidence not of influence but of shared need, and maps most directly onto Tracking~(T).
 
 A complementary convergence emerged in platforms and metadata standards.
-Galaxy\cite{afgan_galaxy_2018} (first released 2005), Code~Ocean (2017), brainlife.io\cite{hayashi_brainlifeio_2024}, a non-exhaustive list, provided turnkey reproducibility services, each implementing separation of code, data, and environment as a first-class abstraction---reflecting Self-containment~(S), Actionability~(A), and Portability~(P).
+Though not an exhaustive list: Galaxy\cite{afgan_galaxy_2018} (first released 2005), Code~Ocean (2017), and brainlife.io\cite{hayashi_brainlifeio_2024} each provided turnkey reproducibility services, each implementing separation of code, data, and environment as a first-class abstraction---reflecting Self-containment~(S), Actionability~(A), and Portability~(P).
 On the standards side, the W3C~PROV data model (2013), Frictionless Data (2007), RO-Crate\cite{peroni_packaging_2022}, and BioComputeObject (IEEE~2791-2020) each addressed interoperable packaging and provenance recording.
 The facts that FAIR required elaboration to accommodate software\cite{barker_introducing_2022} and workflows\cite{goble_fair_2020,wilkinson_applying_2025}, and that independent standards converged on provenance and packaging, confirms that these dimensions are recurrently demanded by research practice.
 
 Framework tooling and domain standards reveal the same pattern at the project-layout level.
 Cookiecutter Data Science (2016), BIDS\cite{gorgolewski_brain_2016} (2016), Kedro (2019), nipoppy (2023), and others, all imposed opinionated directory structures and modular separation---independently motivated by the costs of ad-hoc layouts---reflecting Modularity~(M) and Self-containment~(S).
-Each framework constrains where raw data, derived outputs, code, and documentation reside, making projects navigable by \emph{convention} rather than documentation alone.
+Each framework constrains where code and documentation reside, how raw data inputs and derived outputs are handled, which makes such projects navigable by \emph{convention}.
 
 Viewed together, these independent lines of development map onto every STAMPED property.
 Self-containment~(S) appears wherever projects bundle their dependencies into a single rooted structure; 
