@@ -1,13 +1,29 @@
-# STAMPED Paper
+<div align="center">
+  <picture>
+    <img alt="nwb2bids logo" src="https://raw.githubusercontent.com/myyoda/principles-paper/main/figures/logo.png" width="600">
+  </picture>
 
-[![Build PDF](https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml/badge.svg)](https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml)
+  <h1 align="center">STAMPED Properties (Paper)</h1>
+  <p align="center">
+    <a href="https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml"><img alt="Build PDF" src="https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml/badge.svg"></a>
+  </p>
+</div>
 
-Manuscript formalizing the **STAMPED** properties --- Self-contained, Tracked, Actionable, Modular, Portable, Ephemeral, and Distributable --- for reproducible research objects.
-Originating from the [YODA Principles](https://github.com/myyoda/poster/blob/master/ohbm2018.pdf); earlier working names for this formalization included YODA and VAMP.
+Manuscript formalizing the **STAMPED** properties for reproducible research objects:
+
+📦 S — Self-containment: Everything under one boundary
+🔍 T — Tracking: Version control & provenance
+▶️ A — Actionability: Executable & documented workflows
+🧩 M — Modularity: Independent & composable modules
+🚢 P — Portability: Runs anywhere with explicit specifications
+💨 E — Ephemerality: Transient compute environment
+🌐 D — Distributability: Shareable, persistent, and retrievable
+
+Originating from the [YODA Principles](https://github.com/myyoda/poster/blob/master/ohbm2018.pdf); earlier working names for this formalization included [VAMP](???).
 
 **[View current PDF](https://myyoda.github.io/principles-paper/)** | [Download PDF](https://myyoda.github.io/principles-paper/main.pdf)
 
-Associated examples: https://github.com/myyoda/principles-examples rendered to https://myyoda.github.io/principles-examples .
+Associated examples: [myyoda.github.io/principles-examples](https://myyoda.github.io/principles-examples)
 
 Target venue: **Nature Scientific Data** (Article format).
 
