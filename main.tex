@@ -567,10 +567,10 @@ However, several dimensions of the framework may need to evolve to fully address
 
 \paragraph{Self-contained models.}
 Machine learning models are becoming standard components of research workflows, yet they are often fetched at runtime from external repositories with no guarantee of long-term availability or version stability.
-In many cases, users interact with models through platforms without knowing which specific model version --- or even which model --- produced their results.
+In many cases, users interact with models through platforms without knowing which model version produced their results.
 Even when models are nominally versioned, the degree of version control varies widely: Hugging Face provides commit-level pinning, while commercial APIs may silently update the model behind a fixed endpoint.
 Self-containment (S) could extend naturally to address this: treating models as tracked components of the research object, just as data and code are today.
-Practical mechanisms exist for open models, such as pinned revisions on Hugging Face or cached weights stored via git-annex, and models managed in this way would immediately offer greater value for use in scientific workflows.
+Practical mechanisms exist for open models, such as pinned revisions on Hugging Face or storing the whole model via git-annex, and models managed in this way would immediately offer greater value for use in scientific workflows.
 A related challenge remains: tracking what training data and procedures produced a given model is an open problem that intersects questions of copyright, benchmarking, and provenance, largely beyond what STAMPED can prescribe today.
 
 \paragraph{Provenance for AI-driven changes.}
@@ -578,7 +578,7 @@ When an AI agent modifies code, generates analysis scripts, or makes architectur
 In principle, tracking (T) can extend to cover agent actions --- for example, wrapping an agent invocation in a provenance-capturing command such as \texttt{datalad run} to record the model, prompt, and resulting changes alongside the output.
 Some of this provenance is already captured organically through git commits authored by agents, session transcripts, and co-authorship metadata, but no standards exist for what constitutes sufficient provenance for an AI-driven modification.
 A practical tension exists: agent sessions can produce enormous transcripts, and including them wholesale may dilute the value of more targeted provenance records.
-Determining what to capture --- and at what granularity --- remains an open question.
+Determining what to capture (and at what granularity) remains an open question.
 The results will not be bitwise reproducible, since language model outputs are inherently stochastic, but exact reproducibility is rarely the goal; what matters is that the reasoning and decisions are recoverable.
 Self-contained models (above) strengthen this chain: when the model itself is tracked, the provenance record is more complete.
 
@@ -591,7 +591,8 @@ This represents a practical test of non-executable, prose-based instructions ---
 \paragraph{Ephemeral software.}
 Ephemerality (E) currently applies to compute environments: containers and virtual machines that are created, used, and discarded.
 The rise of AI-generated code extends this property to software itself.
-When an agent can regenerate analysis code from a method specification, the specific implementation becomes disposable --- robustness resides in the specification, not in any particular codebase.
+When an agent can regenerate analysis code from a method specification, the specific implementation becomes disposable.
+The specification accumulates real-world experience, including use cases, bugs, and edge cases, and robustness emerges from this accumulated knowledge rather than from any particular codebase.
 This reframes reproducibility: rather than preserving a fixed software stack, researchers preserve the knowledge and constraints from which working code can be derived.
 Specification-driven approaches such as SpecKit point toward this future, where STAMPED properties would apply to the specifications themselves --- self-contained, tracked, and actionable descriptions from which software is generated on demand.
 STAMPED's emphasis on tracked, self-contained method descriptions provides the foundation that makes ephemeral software viable rather than reckless.
