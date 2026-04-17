@@ -3,7 +3,7 @@
     <img alt="nwb2bids logo" src="https://raw.githubusercontent.com/myyoda/principles-paper/main/figures/logo.png" width="600">
   </picture>
 
-  <h1 align="center">STAMPED Properties (Paper)</h1>
+  <h1 align="center">STAMPED Principles (Paper)</h1>
   <p align="center">
     <a href="https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml"><img alt="Build PDF" src="https://github.com/myyoda/principles-paper/actions/workflows/build-pdf.yml/badge.svg"></a>
   </p>
