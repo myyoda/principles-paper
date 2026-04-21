@@ -54,10 +54,10 @@ jobs:
         if: github.event_name == 'pull_request'
         id: diff
         run: |
-          docker run --rm -v "$PWD:/work" ghcr.io/myyoda/diff-pdf:latest \
+          docker run --rm -v "$PWD:/work" ghcr.io/stamped-principles/diff-pdf:latest \
             bash ./code/gh-pages-diff-pdf.sh \
               main.pdf \
-              "https://myyoda.github.io/principles-paper/main.pdf" \
+              "https://stamped-principles.github.io/stamped-paper/main.pdf" \
               "gh-pages-pr-${{ github.event.pull_request.number }}" \
               "${{ github.repository }}" \
               "${{ github.server_url }}" \
@@ -89,12 +89,21 @@ jobs:
           git commit -m "PDF preview for PR #${PR_NUMBER} (${HEAD_SHA:0:7})"
           git push -f origin "$BRANCH"
 
+      - name: Find existing diff comment
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/find-comment@v3
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '<!-- pdf-preview -->'
+
       - name: Comment on PR with PDF link and diff
         if: github.event_name == 'pull_request'
         uses: peter-evans/create-or-update-comment@v4
         with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
           body: ${{ steps.diff.outputs.body }}
           edit-mode: replace
 
