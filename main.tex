@@ -128,9 +128,9 @@ Compatible tools such as git-annex, DataLad, or DVC extend content-addressed tra
 Toward the ideal end, provenance is captured programmatically by tooling rather than by manual annotation, producing richer records than a human would typically write: each computational step records what command was executed and what inputs it consumed.
 When modules are independently tracked under compatible systems (M), the version of every module at the time of each commit is also discoverable, providing a complete picture of the state that produced a given result.
 This enables not just inspection but re-execution.
+Beyond the research object itself, knowing the state of data and code at each hand-off between experimental, analytical, and engineering stages is what allows a team to coordinate updates without losing the provenance chain---an operational view of Tracking developed by the SciOps framework\cite{johnson_sciops_2024}.
 % TODO: cite Tek Raj paper, provenance format approaches
 % TODO: mention W3C PROV, RO-Crate, BEP028 as interoperable export targets
-% TODO: cite \cite{johnson_sciops_2024} somewhere in T — original text described this as "data consistency" but the paper uses that term in a different sense (process/team consistency, not content-addressed identification)
 
 
 
@@ -155,6 +155,7 @@ Actionability applies to every other STAMPED dimension: at the ideal end, each p
   \item \textbf{Distributability} is more actionable when a frozen state can be produced and retrieved by others (e.g., containers, \texttt{npm ci}), not just described with pinning instructions.
 \end{itemize}
 The principle is tool-agnostic: any system that moves a property from documented to executable moves the research object further along the actionability spectrum.
+Actionability also extends from tooling to the operational layer of a research group: a SciOps-style workflow makes hand-offs between experimental, analytical, and engineering stages explicit so that artifacts move from one step to the next with unambiguous state\cite{johnson_sciops_2024}, an organizational counterpart to the per-component actionability described above.
 
 
 
@@ -209,7 +210,7 @@ Ephemerality eliminates this problem by construction: a disposable environment b
 
 The spectrum of Ephemerality ranges from manually setting up a fresh environment from the project's specification---sufficient to catch environment drift---to fully automated disposable environments created and destroyed per execution.
 At the ideal end, ephemeral computation also enables testing across different host systems, where same-host execution validates specification completeness and different-host execution validates that specifications are not coupled to a specific system.
-The FAIRly big workflow approach\cite{hanke_defense_2021} and platforms such as Code Ocean operationalize this ideal, treating each computation as an ephemeral work unit---which also enables scaling, as independent disposable instances can be parallelized across subjects, parameters, or datasets.
+The FAIRly big workflow approach\cite{wagner_fairly_2022} and platforms such as Code Ocean operationalize this ideal, treating each computation as an ephemeral work unit---which also enables scaling, as independent disposable instances can be parallelized across subjects, parameters, or datasets.
 Ephemeral computation does not validate everything---for instance, an ephemeral environment with network access may fail to notice unpinned dependencies fetched at build time, a self-containment gap that only surfaces when those resources move or disappear---but it substantially raises confidence that the research object is self-contained, portable, and actionable.
 
 
@@ -321,8 +322,8 @@ The schema for this checklist is itself a living, version-tracked entity that is
 
 No single tool addresses all the dimensions of scientific rigor described above, though many tools contribute to one or several properties simultaneously.
 For example, container technologies such as Docker or Singularity serve Portability by providing OS-level isolation from explicit environment specifications, enable Ephemerality by disposing per-execution environments, and facilitate Distributability by producing frozen, shareable artifacts.
-Similarly, version control systems such as \texttt{Git} underpin both Tracking (content-addressed identification and change history) and Self-containment (gathering all components under a single root).
-In practice, self-containing all data might be undesired or prohibitive due to size or other concerns. Extensions such as \texttt{git-annex}, \texttt{DataLad}, \texttt{DVC}, and \texttt{Git LFS} strike the balance between the two properties by tracking metadata that identifies specific data versions and obtainability information instead, e.g., content checksums and URLs of remote servers that act as a source, and providing actionable interfaces to obtain the data when necessary.
+Similarly, version control systems such as Git underpin both Tracking (content-addressed identification and change history) and Self-containment (gathering all components under a single root).
+In practice, self-containing all data might be undesired or prohibitive due to size or other concerns. Extensions such as git-annex, DataLad, DVC, and Git LFS strike the balance between the two properties by tracking metadata that identifies specific data versions and obtainability information instead, e.g., content checksums and URLs of remote servers that act as a source, and providing actionable interfaces to obtain the data when necessary.
 
 This overlap is not incidental — it reflects the interdependence of the STAMPED properties themselves.
 Achieving Ephemerality, for instance, inherently exercises Portability and Actionability: a disposable environment must be reconstituted from explicit specifications, encouraging end-to-end automation.
@@ -337,9 +338,9 @@ STAMPED properties are tool-agnostic. For example, any system that moves a prope
 Researchers should select tools based on their domain, infrastructure, and team familiarity, recognizing that the tools listed here are illustrative rather than prescriptive: what matters is that the underlying property is satisfied, regardless of which tool achieves it.
 
 Where multiple tools serve the same STAMPED property, the choice between them often involves trade-offs between flexibility and simplicity.
-A representative example is the choice between \texttt{git-annex} and Git LFS for large-file tracking.
+A representative example is the choice between git-annex and Git LFS for large-file tracking.
 Both appear under Self-containment and Tracking in Table~\ref{tab:stamped-tools}, but they occupy different points on a complexity-flexibility spectrum.
-\texttt{git-annex} supports many remote types (e.g. other git repositories over SSH or HTTP, or simple cloud data stores such as S3, local drives, offline USB archives), making it well-suited to multi-institutional collaboration, long-term archival where data sovereignty or offline access is required, as well as local content tracking.
+git-annex supports many remote types (e.g. other git repositories over SSH or HTTP, or simple cloud data stores such as S3, local drives, offline USB archives), making it well-suited to multi-institutional collaboration, long-term archival where data sovereignty or offline access is required, as well as local content tracking.
 Git LFS offers a simpler alternative: it is transparent to users, natively supported by GitHub and GitLab, and broadly adopted.
 But it is centralized (requiring an LFS server), lacks offline capability, and provides less flexible remote configurations.
 Lightweight STAMPED implementations using Git LFS are entirely feasible for easier onboarding, trading federation flexibility for reduced operational overhead.
@@ -354,11 +355,11 @@ The same pattern---flexibility versus simplicity---recurs across other tool choi
 \textbf{Property} & \textbf{Tools / Technologies} & \textbf{Role} \\
 \hline
 \textbf{S — Self-containment} &
-\texttt{Git} submodules, DataLad, \texttt{git-annex}, DVC, Git LFS &
+Git submodules, DataLad, git-annex, DVC, Git LFS &
 Gather all components (code, data, environments) under a single root via direct inclusion or explicit references (e.g., subdatasets, registered URLs) \\
 \hline
 \textbf{T — Tracking} &
-\texttt{Git}, \texttt{git-annex}, DataLad, DVC, Docker and other containers, Kedro, Git LFS, OSF.io, Zenodo and other data archives providing DOIs &
+Git, git-annex, DataLad, DVC, Docker and other containers, Kedro, Git LFS, OSF.io, Zenodo and other data archives providing DOIs &
 Version control for code and data; content-addressed identification; provenance recording (e.g., \texttt{datalad run} for programmatic provenance capture); persistent identifiers for content (DOIs) \\
 \hline
 \textbf{A — Actionability} &
@@ -366,15 +367,15 @@ Make, Snakemake, Nextflow, CWL, \texttt{datalad run}, \texttt{git annex addcompu
 Define executable specifications for workflows; provide clear entry points for reproducing results \\
 \hline
 \textbf{M — Modularity} &
-\texttt{Git} submodules, DataLad subdatasets, Kedro &
+Git submodules, DataLad subdatasets, Kedro &
 Organize components into independently versioned, composable modules; provide project templates with logical directory separation \\
 \hline
 \textbf{P — Portability} &
-Docker, Singularity, Nix, conda, \texttt{pip} (\texttt{pyproject.toml}, \texttt{requirements.txt}), npm &
+Docker, Singularity, Nix, conda, pip (\texttt{pyproject.toml}, \texttt{requirements.txt}), npm &
 Explicitly specify and isolate computational environments; container-based (OS-level isolation) or package-based (declarative, reproducible builds) \\
 \hline
 \textbf{E — Ephemerality} &
-Docker, Singularity, \texttt{docker compose}, Slurm, cloud deployments (e.g., AWS, GCP, Azure, GitHub Actions) &
+Docker, Singularity, Docker Compose, Slurm, cloud deployments (e.g., AWS, GCP, Azure, GitHub Actions) &
 Spawn disposable, temporary environments per execution; validate that specifications are complete by reconstituting from scratch \\
 \hline
 \textbf{D — Distributability} &
