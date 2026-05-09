@@ -338,16 +338,16 @@ Similarly, version control systems such as Git underpin both Tracking (content-a
 
 In practice, self-containing all data might be undesired or prohibitive due to size or other concerns. Extensions such as git-annex, DataLad, DVC, and Git LFS strike the balance between the two principles by tracking metadata that identifies specific data versions and obtainability information instead, e.g., content checksums and URLs of remote servers that act as a source, and providing actionable interfaces to obtain the data when necessary.
 
-This overlap is not incidental — it reflects the interdependence of the STAMPED properties themselves.
+This overlap is not incidental — it reflects the interdependence of the STAMPED principles themselves.
 Achieving Ephemerality, for instance, inherently exercises Portability and Actionability; a disposable environment must be reconstituted from explicit specifications, encouraging end-to-end automation.
 Likewise, Distributability builds on Self-containment and Tracking; a research object can only be shared in a consistent, retrievable state if its boundary is well-defined and all components are precisely identified.
-The tools that serve multiple properties do so precisely because they operationalize these connections.
+The tools that enhance multiple properties of a research object do so precisely because they operationalize these connections.
 
 Table~\ref{tab:stamped-tools} maps some commonly used tools and technologies to each STAMPED principle.
 A comprehensive up-to-date review of existing tools is out of scope for this formalization paper and would quickly become outdated.
 To fill that niche, we initiated a satellite project with a website to describe tools and examples, and characterize them in terms of STAMPED and FAIR principles [cite https://examples.stamped-principles.org].
 
-STAMPED principles are tool-agnostic
+STAMPED principles are tool-agnostic.
 A well-chosen tool can improve several properties at once, and a thoughtfully assembled toolchain can cover all of them.
 Researchers should select tools based on their domain, infrastructure, and team familiarity, recognizing that the tools listed here are illustrative rather than prescriptive.
 What matters is that the underlying property is satisfied, regardless of which tool achieves it.
@@ -455,7 +455,7 @@ Wilson et~al.\cite{wilson_good_2017} codified ``Good Enough Practices'' that ope
 The YODA principles\cite{hanke_yoda_2018} combined these insights into organizational practices for research data management.
 De~Smedt et~al.\cite{de_smedt_fair_2020} articulated the notion of FAIR Digital Objects as ``actionable knowledge units,'' foregrounding Actionability~(A) as a first-class concern complementary to FAIR.
 Building on YODA and this emphasis on actionability, the VAMP formulation\cite{hanke_what_2023} (Versioned, Actionable, Modular, Portable) made Actionability~(A), Portability~(P), and Modularity~(M) explicit organizational requirements, and introduced Ephemerality~(E) as validation for Portability~(P)---directly prefiguring STAMPED.
-Notably, the WCI-FW framework\cite{wilkinson_applying_2025} extended FAIR to computational workflows but explicitly declined to define new principles, leaving the operational gap (how a research object should be structured and managed) that STAMPED fills.
+Notably, the WCI-FW framework\cite{wilkinson_applying_2025} extended FAIR to computational workflows but explicitly declined to define new principles, leaving the operational gap  that STAMPED fills (how a research object should be structured and managed).
 
 Independent of these normative efforts, a parallel ``Git for data'' convergence occurred in tooling.
 git-annex (2010), Git~LFS (2015), DVC (2017), Pachyderm (2014), and Icechunk (2024) all independently arrived at content-addressed identification of large files, logical separation of metadata from bulk storage, and derivation records linking inputs to outputs.
