@@ -13,7 +13,7 @@ Manuscript formalizing the **STAMPED** properties for reproducible research obje
 
 > 📦 **S**elf-contained: Everything under one boundary<br>
 > 🔍 **T**racked: Version control & provenance<br>
-> ▶️ **A**ctionable: Executable & documented workflows<br>
+> ▶️  **A**ctionable: Executable & documented workflows<br>
 > 🧩 **M**odular: Independent & composable modules<br>
 > 🚢 **P**ortable: Runs anywhere with explicit specifications<br>
 > 💨 **E**phemeral: Transient compute environment<br>
@@ -34,11 +34,9 @@ See [CLAUDE.md](CLAUDE.md) for project conventions and file map.
 This project follows the [REUSE specification](https://reuse.software/) for
 machine-readable copyright and licensing information.
 
-- Manuscript text, bibliography, and figures (`main.tex`, `references.bib`,
-  `*.md`, `figures/**`, `proposals/**`, `research/**`) are licensed under
-  [CC-BY-4.0](LICENSES/CC-BY-4.0.txt).
-- Code, tooling, and CI configuration (`code/**`, `containers/**`,
-  `.github/**`, `.claude/**`, `Makefile`, `.gitignore`) are licensed under
+- Manuscript text, bibliography, figures and auxililary documentation are
+  licensed under [CC-BY-4.0](LICENSES/CC-BY-4.0.txt).
+- Code, tooling, and CI configuration are licensed under
   [Apache-2.0](LICENSES/Apache-2.0.txt).
 
 Per-path declarations live in [`REUSE.toml`](REUSE.toml); full license texts
